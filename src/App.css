@@ -30,3 +30,48 @@
     transform: rotate(360deg);
   }
 }
+
+#root {
+    margin: 0 auto;
+    padding-top: 20px;
+    width: 90%;
+    max-width: 1024px;
+    text-align: center;
+    font-family: "Arial";
+}
+
+.search-bar {
+    margin: 20px;
+    text-align: center;
+}
+
+input {
+    width: 50%;
+    padding: 5px 10px;
+    border-radius: 10px;
+    border: 1px solid #999999;
+}
+
+.busy {
+    opacity: 0.2;
+}
+
+.repo-list {
+    max-width: 600px;
+    margin: 0 auto;
+    padding-top: 20px;
+    border-top: 1px dotted #666666;
+}
+
+ul {
+    padding: 0px;
+    list-style: none;
+}
+
+li {
+    border: 1px solid #333333;
+    border-radius: 5px;
+    margin-bottom: 5px;
+    padding: 10px;
+    cursor: pointer;
+}
