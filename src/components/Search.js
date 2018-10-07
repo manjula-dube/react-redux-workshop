@@ -1,8 +1,7 @@
   import React, { Component } from 'react'
   import { connect } from 'react-redux'
 
-  import { get } from '../utils/request'
-  import { setBusy, storeResult } from '../actions/actions'
+  import { searchActionCreator } from '../actions/actionCreators'
 
   class Search extends Component {
 
@@ -25,12 +24,8 @@
         return 
       }
 
-      this.props.dispatch(setBusy(true))
-      get(`https://github-user.now.sh?username=${this.state.userName}`)
-          .then(data => {
-            this.props.dispatch(setBusy(false))
-            this.props.dispatch(storeResult(data.data))
-          })
+      this.props.dispatch(searchActionCreator(this.state.userName))
+      
     }
 
     render()  {
