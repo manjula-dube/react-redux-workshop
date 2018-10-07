@@ -1,8 +1,8 @@
 /**
  * Node module imports
  */
-import { createStore, applyMiddleware, compose } from 'redux'
-
+import { createStore, applyMiddleware } from 'redux'
+import thunk from 'redux-thunk'
 
 /**
  * File imports
@@ -24,7 +24,8 @@ export default function(state = {}){
     // Each reducer will have data, which will be mapped against reducer key name
     const store = createStore(
         combinedReducer,
-        state // JSON data of the store which can be mapped to each reducer key name
+        state, // JSON data of the store which can be mapped to each reducer key name
+        applyMiddleware(thunk)
     )
 
     // Store basically is object consisting various functionality like, getState(), replaceReducer() ... etc
