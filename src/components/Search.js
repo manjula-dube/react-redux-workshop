@@ -11,8 +11,12 @@
       this.onSearchUserClick = this.onSearchUserClick.bind(this)
     }
 
+    componentDidMount() {
+      this.onSearchUserClick()
+    }
+
     state = {
-      userName: ''
+      userName: 'vihangpatel'
     }
 
     onInputChange (userName) {
@@ -48,14 +52,7 @@
                 >Search </button>
                 
             
-          </div>
-          <div className='repo-list'>
-            <h4>List of available repositories:</h4>
-            <p>(click on any repo to visit on GitHub)</p>
-            <ul>
-              Here the repo list will be shown
-            </ul>
-          </div>
+          </div>    
         </div>
       )
     }

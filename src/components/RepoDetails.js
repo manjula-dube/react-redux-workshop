@@ -1,52 +1,63 @@
-import React from 'react'
-import { connect } from 'react-redux'
+import React from "react";
+import { connect } from "react-redux";
 
 const RepoDetails = ({ repoDetail }) => {
-    return (
-      <li
+  return (
+    <div className="wrapper">
+      <div
         key={repoDetail.username}
-        className='list-group-item'
-        onClick={() => console.log('ff')}
-        >
-        <img src={repoDetail.avatar} alt={repoDetail.avatar}/>
-        <h3 className='blueText'>{repoDetail.name}</h3>
-        {RepoListElement(repoDetail)}
+        className="profile"
+        onClick={() => console.log("ff")}
+      >
+        <img src={repoDetail.avatar} alt={repoDetail.avatar} />
+        <span className="blue-text">{repoDetail.name}</span>
+      </div>
+      {RepoListElement(repoDetail)}
+    </div>
+  );
+};
 
-      </li>
-    )
-}
-
-
-  const RepoListElement = ({ repos }) => {
-    if(!repos) {
-      return null 
-    }
-    return repos.map(repo => {
-      return (
-        <li
-          key={repo.id}
-          className='list-group-item'
-          onClick={() => window.open(repo.url, '_blank')}
-          >
-          <h3 className='blueText'>{repo.name}</h3>
-          <p> Name:
-              {repo.name !== null ? <span className='greenText'> {repo.name}</span> : <span className='redText'> Unknown </span>}
-          </p>
-          <p>Description:</p>
-          {repo.description !== null ? <span className='greenText'> {repo.description}</span> : <span className='redText'> None </span>}
-          <p>Stars:</p>
-          {repo.stars !== null ? <span className='blueText'> {repo.stars}</span> : <span className='redText'> None </span>}
-        </li>
-      )
-    })
+const RepoListElement = ({ repos }) => {
+  if (!repos) {
+    return null;
   }
+  const renderList = () =>
+    repos.map(repo => {
+      return (
+        <div
+          key={repo.id}
+          className="list-item"
+          onClick={() => window.open(repo.url, "_blank")}
+        >
+		  <span className="blue-text">{repo.name}</span>
+		  <br/>
+          {repo.description !== null ? (
+            <span className="green-text"> {repo.description}</span>
+          ) : (
+            <span className="red-text"> None </span>
+		  )}
+		  <br/>
+          {repo.stars !== null ? (
+            <span className="blue-text"> {repo.stars}</span>
+          ) : (
+            <span className="red-text"> None </span>
+          )}
+        </div>
+      );
+    });
 
-
+  return (
+    <div className="repo-container">
+      <span>Repository List</span>
+      <div className="repo-list">{renderList()}</div>
+    </div>
+  );
+};
 
 function mapStateToProps(state) {
-    return {
-        repoDetail : state.home.repoDetails || {}
-    }
+  return {
+    repoDetail: state.home.repoDetails || {}
+  };
 }
 
-export default connect(mapStateToProps)(RepoDetails)
+export default connect(mapStateToProps)(RepoDetails);

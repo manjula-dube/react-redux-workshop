@@ -53,7 +53,7 @@ input {
     width: 50%;
     padding: 10px;  
     border: none;
-    top: 20%;
+    top: 16%;
     font-size: 14px;
     position: relative;
 }
@@ -63,7 +63,7 @@ button {
   padding: 10px 20px;
   background: white;
   color : #24aae1;
-  top: 20%;
+  top: 16%;
   font-size: 14px;
   position: relative;
 }
@@ -72,22 +72,49 @@ button {
     opacity: 0.2;
 }
 
-.repo-list {
-    max-width: 600px;
-    margin: 0 auto;
-    padding-top: 20px;
-    border-top: 1px dotted #666666;
-}
 
 ul {
     padding: 0px;
     list-style: none;
 }
 
-li {
-    border: 1px solid #333333;
-    border-radius: 5px;
-    margin-bottom: 5px;
-    padding: 10px;
-    cursor: pointer;
+.list-item {
+  border: 1px solid lightgray;
+  width: 40%;
+  float: left;
+  margin: 10px;
+  padding: 16px;
+  text-align: left;
+  cursor: pointer;
+}
+
+.blue-text {
+  font-weight: bold;
+  color: #24aae1;
+  font-weight: 18px;
+}
+
+.wrapper {
+  width: 1024px;
+  margin: 50px auto;
+  display: inline-block;
+}
+
+.profile {
+  width: 25%;
+  float: left;
+}
+
+.profile img {
+  width: 200px;
+  padding: 30px 10px;
+}
+
+.repo-container {
+  float: left;
+  width: 74%;
+}
+
+.repo-list span {
+  padding: 5px 0;
 }
