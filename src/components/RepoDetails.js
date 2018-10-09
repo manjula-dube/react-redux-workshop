@@ -48,7 +48,7 @@ const RepoListElement = ({ repos }) => {
 
   return (
     <div className="repo-container">
-      <span>Repository List</span>
+      <h3>Repository List</h3>
       <div className="repo-list">{renderList()}</div>
     </div>
   );
