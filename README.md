@@ -81,6 +81,28 @@ export default combineReducers(initialReducer)
 
 ```
 
+Create actions 
+
+```
+
+export function setBusy(busy) {
+  return {
+    type : 'SET_BUSY',
+    data : { 
+      busy
+    }
+  }
+}
+
+export function storeResult(result) {
+  return {
+    type : 'STORE_RESULT',
+    data : result
+  }
+}
+
+```
+
 #### Then page wise keep adding reducer
 
 #### Make sure we have extension installed
