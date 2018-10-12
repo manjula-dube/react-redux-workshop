@@ -1,8 +1,7 @@
-  import React, { Component } from 'react'
-  import { connect } from 'react-redux'
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
 
-  import { get } from '../utils/request'
-  import { setBusy, storeResult } from '../actions/actions'
+  import { searchActionCreator } from '../actions/actionCreators'
 
   class Search extends Component {
 
@@ -12,8 +11,12 @@
       this.onSearchUserClick = this.onSearchUserClick.bind(this)
     }
 
+    componentDidMount() {
+      this.onSearchUserClick()
+    }
+
     state = {
-      userName: ''
+      userName: 'manjula91'
     }
 
     onInputChange (userName) {
@@ -25,12 +28,8 @@
         return 
       }
 
-      this.props.dispatch(setBusy(true))
-      get(`https://github-user.now.sh?username=${this.state.userName}`)
-          .then(data => {
-            this.props.dispatch(setBusy(false))
-            this.props.dispatch(storeResult(data.data))
-          })
+      this.props.dispatch(searchActionCreator(this.state.userName))
+      
     }
 
     render()  {
@@ -53,14 +52,7 @@
                 >Search </button>
                 
             
-          </div>
-          <div className='repo-list'>
-            <h4>List of available repositories:</h4>
-            <p>(click on any repo to visit on GitHub)</p>
-            <ul>
-              Here the repo list will be shown
-            </ul>
-          </div>
+          </div>    
         </div>
       )
     }
