@@ -63,6 +63,24 @@ export default function(state = {}){
 
 #### Create root reducer
 
+```
+
+import { combineReducers } from 'redux'
+
+// App consists many pages and hence have multiple reducers/data-stores
+// All they need to be combined in single reducer/data-store
+import home from './home'
+// Add here it is needed
+
+const initialReducer = {
+    home
+}
+
+// Combine all reducers using redux API
+export default combineReducers(initialReducer)
+
+```
+
 #### Then page wise keep adding reducer
 
 #### Make sure we have extension installed
