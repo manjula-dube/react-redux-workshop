@@ -1,38 +1,30 @@
 import React, { Component } from 'react'
-import { connect } from 'react-redux'
-
-  import { searchActionCreator } from '../actions/actionCreators'
-
-  class Search extends Component {
-
-    constructor(props) {
+  import { connect } from 'react-redux'
+   import { get } from '../utils/request'
+  import { setBusy, storeResult } from '../actions/actions'
+   class Search extends Component {
+     constructor(props) {
       super(props)
-
-      this.onSearchUserClick = this.onSearchUserClick.bind(this)
+       this.onSearchUserClick = this.onSearchUserClick.bind(this)
     }
-
-    componentDidMount() {
-      this.onSearchUserClick()
+     state = {
+      userName: ''
     }
-
-    state = {
-      userName: 'manjula91'
-    }
-
-    onInputChange (userName) {
+     onInputChange (userName) {
       this.setState({userName})
     }
-
-    onSearchUserClick() {
+     onSearchUserClick() {
       if(this.props.busy) {
         return 
       }
-
-      this.props.dispatch(searchActionCreator(this.state.userName))
-      
+       this.props.dispatch(setBusy(true))
+      get(`https://github-user.now.sh?username=${this.state.userName}`)
+          .then(data => {
+            this.props.dispatch(setBusy(false))
+            this.props.dispatch(storeResult(data.data))
+          })
     }
-
-    render()  {
+     render()  {
       return (
         <div>
           <div className='search-bar'>
@@ -52,16 +44,21 @@ import { connect } from 'react-redux'
                 >Search </button>
                 
             
-          </div>    
+          </div>
+          <div className='repo-list'>
+            <h4>List of available repositories:</h4>
+            <p>(click on any repo to visit on GitHub)</p>
+            <ul>
+              Here the repo list will be shown
+            </ul>
+          </div>
         </div>
       )
     }
   }
-
-  function mapStateToProps(state) {
+   function mapStateToProps(state) {
       return {
         busy : state.home.busy
       }
   }
-
-  export default connect(mapStateToProps)(Search)
+   export default connect(mapStateToProps)(Search) 
