@@ -1,5 +1,5 @@
 
-#### Configure store 
+## Configure store 
 
 ```
 // lib imports
@@ -59,7 +59,7 @@ export default function(state = {}){
 
 ```
 
-#### Configure middlerware that intercepts actions dispatched and tracks the actions
+#### Configure middlerware that intercepts actions dispatched and tracks the actions: (This is needed incase of thunk or sagas)
 
 #### Create root reducer
 
