@@ -1,67 +1,56 @@
-  import React, { Component } from 'react'
-  import { connect } from 'react-redux'
+import React, { Component } from "react";
+import { connect } from "react-redux";
 
-  import { searchActionCreator } from '../actions/actionCreators'
+import { searchActionCreator } from "../actions/actionCreators";
 
-  class Search extends Component {
+class Search extends Component {
+  constructor(props) {
+    super(props);
+    this.onSearchUserClick = this.onSearchUserClick.bind(this);
+  }
 
-    constructor(props) {
-      super(props)
+  componentDidMount() {}
 
-      this.onSearchUserClick = this.onSearchUserClick.bind(this)
+  state = {
+    userName: ""
+  };
+  onInputChange(userName) {
+    this.setState({ userName });
+  }
+  onSearchUserClick() {
+    if (this.props.busy) {
+      return;
     }
 
-    componentDidMount() {
-      this.onSearchUserClick()
-    }
+    this.props.dispatch(searchActionCreator(this.state.userName));
+  }
+  render() {
+    return (
+      <div>
+        <div className="search-bar">
+          <input
+            placeholder="Enter a Github User's name"
+            value={this.state.userName}
+            onChange={event => this.onInputChange(event.target.value)}
+            type="text"
+          />
 
-    state = {
-      userName: 'vihangpatel'
-    }
-
-    onInputChange (userName) {
-      this.setState({userName})
-    }
-
-    onSearchUserClick() {
-      if(this.props.busy) {
-        return 
-      }
-
-      this.props.dispatch(searchActionCreator(this.state.userName))
-      
-    }
-
-    render()  {
-      return (
-        <div>
-          <div className='search-bar'>
-            
-                <input
-                  placeholder="Enter a Github User's name"
-                  value={this.state.userName}
-                  onChange={event => this.onInputChange(event.target.value)}
-                  type='text'
-                />
-                
-                <button
-                  className={this.props.busy ? 'busy' : ''} 
-                  disabled={this.props.busy}
-                  onClick={this.onSearchUserClick}
-                  type="submit"
-                >Search </button>
-                
-            
-          </div>    
+          <button
+            className={this.props.busy ? "busy" : ""}
+            disabled={this.props.busy}
+            onClick={this.onSearchUserClick}
+            type="submit"
+          >
+            Search{" "}
+          </button>
         </div>
-      )
-    }
+      </div>
+    );
   }
-
-  function mapStateToProps(state) {
-      return {
-        busy : state.home.busy
-      }
-  }
-
-  export default connect(mapStateToProps)(Search)
+}
+function mapStateToProps(state) {
+  return {
+    busy: state.home.busy
+  };
+}
+export default connect(mapStateToProps)(Search);
